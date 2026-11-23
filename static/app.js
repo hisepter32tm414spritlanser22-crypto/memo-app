@@ -36,7 +36,7 @@ async function fetchMemos() {
                 selectMemo(memo);
                 //選択状態のスタイルを付ける
                 document.querySelectorAll(".memo-card").forEach(function(C){
-                    c.classList.remove("selected");
+                    C.classList.remove("selected");
                 });
 
                 card.classList.add("selected");
@@ -83,7 +83,7 @@ function selectMemo(memo){
 // --- メモを更新する ---
 async function updateMemo(){
     var id = memoId.value;
-    var title = memoTitle.value;
+    var title = memoTitle.value.trim();
     var body = memoBody.value.trim();
 
     if (!title || !body){
@@ -131,7 +131,7 @@ function resetForm(){
     btnDelete.disabled = true;
 
     //　選択状態を解除
-    document.querySelectorAll(".memo-card").forEach(function(c){
+    document.querySelectorAll(".memo-card").forEach(function(C){
         C.classList.remove("selected");
     });
 }
@@ -149,7 +149,7 @@ btnUpdate.addEventListener("click",updateMemo);
 btnDelete.addEventListener("click",deleteMemo);
 
 //　キャンセルボタン
-btnCancel.addEventListener("click",resetFrom);
+btnCancel.addEventListener("click",resetForm);
 
 // ページ読み込み時にメモ一覧を取得
 fetchMemos();
